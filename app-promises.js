@@ -70,21 +70,3 @@ getStatusAlt(1).then((status) => {
 }).catch((e) => {
   console.log(e)
 })
-
-// getUser(1).then((user) => {
-//   console.log(user)
-// }).catch((e) => {
-//   console.log(e)
-// })
-
-// getGrades(101).then((grades) => {
-//   console.log(grades)
-// }).catch((e) => {
-//   console.log(e)
-// })
-
-// getStatus(1).then((status) => {
-//   console.log(status)
-// }).catch((e) => {
-//   console.log(e)
-// })
