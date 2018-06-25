@@ -1,15 +1,21 @@
 const axios = require('axios')
 
-const getExchangeRate = (from, to) => {
-  return axios.get(`https://free.currencyconverterapi.com/api/v5/convert?q=${from}_${to}&compact=y`).then((response) => {
+const getExchangeRate = async (from, to) => {
+  try {
+    const response = await axios.get(`https://free.currencyconverterapi.com/api/v5/convert?q=${from}_${to}&compact=y`)
     return response.data.USD_INR.val
-  })
+  } catch (e) {
+    throw new Error(`Unable to get exchange rate for ${from} and ${to}.`)
+  }
 }
 
-const getCountries = (currencyCode) => {
-  return axios.get(`https://restcountries.eu/rest/v2/currency/${currencyCode}`).then((response) => {
+const getCountries = async (currencyCode) => {
+  try {
+    const response = await axios.get(`https://restcountries.eu/rest/v2/currency/${currencyCode}`)
     return response.data.map((counrty) => counrty.name)
-  })
+  } catch (e) {
+      throw new Error(`Unable to get countries that user ${currencyCode}`)
+  }
 }
 
 const convertCurrency = (from, to, amount) => {
@@ -34,4 +40,6 @@ const convertCurrencyAlt = async (from, to, amount) => {
 
 convertCurrencyAlt('USD', 'INR', 1).then((status) => {
   console.log(status)
+}).catch((e) => {
+  console.log(e)
 })
